@@ -8,7 +8,7 @@
   <li>
     <a href="categorie.php" >
       <i class="glyphicon glyphicon-indent-left"></i>
-      <span>Categorie</span>
+      <span>Categories</span>
     </a>
   </li>
   <li>
