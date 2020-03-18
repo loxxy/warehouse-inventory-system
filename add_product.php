@@ -16,6 +16,7 @@
      $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
      $p_buy   = remove_junk($db->escape($_POST['buying-price']));
      $p_sale  = remove_junk($db->escape($_POST['sale-price']));
+     $p_location   = remove_junk($db->escape($_POST['product-location']));
      if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
        $media_id = '0';
      } else {
@@ -23,9 +24,9 @@
      }
      $date    = make_date();
      $query  = "INSERT INTO products (";
-     $query .=" name,quantity,buy_price,sale_price,categorie_id,media_id,date";
+     $query .=" name,quantity,buy_price,sale_price,categorie_id,media_id,date, location";
      $query .=") VALUES (";
-     $query .=" '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}'";
+     $query .=" '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}', '{$p_location}'";
      $query .=")";
      $query .=" ON DUPLICATE KEY UPDATE name='{$p_name}'";
      if($db->query($query)){
@@ -108,7 +109,7 @@
                      <span class="input-group-addon">
                        <i class="glyphicon">₹</i>
                      </span>
-                     <input type="number" class="form-control" name="buying-price" placeholder="Buying Price" value="0">
+                     <input type="number" class="form-control" name="buying-price" placeholder="Buying Price">
                      <span class="input-group-addon">.00</span>
                   </div>
                  </div>
@@ -117,10 +118,18 @@
                       <span class="input-group-addon">
                         <i class="glyphicon">₹</i>
                       </span>
-                      <input type="number" class="form-control" name="sale-price" placeholder="Selling Price" value="0">
+                      <input type="number" class="form-control" name="sale-price" placeholder="Selling Price">
                       <span class="input-group-addon">.00</span>
                    </div>
                   </div>
+               </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                   <i class="glyphicon glyphicon-home"></i>
+                  </span>
+                  <input type="text" class="form-control" name="product-location" placeholder="Product Location">
                </div>
               </div>
               <button type="submit" name="add_product" class="btn btn-danger">Add product</button>
